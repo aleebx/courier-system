@@ -99,7 +99,7 @@
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="phone" class="form-label">Teléfono del destinatario</label>
-                                                        <input type="tel" class="form-control vRe" placeholder="Ingresar Teléfono" name="phone" value="{{ old('phone') }}" required>
+                                                        <input type="tel" class="form-control vRe" placeholder="Ingresar Teléfono" name="phone" pattern="[0-9]{9}" value="{{ old('phone') }}" required>
                                                     </div>
                                                 </div><!--end col-->
                                                 <div class="col-6">
@@ -220,6 +220,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-text">S/</span>
                                                 <input type="number" class="form-control vRe" placeholder="Servicio de entrega" name="servicio" id="servicio" value="{{ old('servicio', 0) }}" disabled>
+                                                <input type="hidden" class="form-control vRe" name="servicio2" id="servicio2" value="{{ old('servicio2', 0) }}">
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
@@ -227,6 +228,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-text">S/</span>
                                                 <input type="number" class="form-control vRe" placeholder="extra" name="extra" id="extra" value="{{ old('extra', 0) }}" disabled>
+                                                <input type="hidden" class="form-control vRe" name="extra2" id="extra2" value="{{ old('extra2', 0) }}">
                                             </div>
                                         </div><!--end col-->
                                         <div class="col-lg-3">
@@ -234,6 +236,8 @@
                                             <div class="input-group">
                                                 <span class="input-group-text">S/</span>
                                                 <input type="number" class="form-control vRe" placeholder="Total a pagar" id="total" name="total" value="{{ old('total', 0) }}" disabled>
+                                                <input type="hidden" class="form-control vRe" id="total2" name="total2" value="{{ old('total2', 0) }}">
+                                                <input type="hidden" class="form-control vRe" id="type_paquete" name="type_paquete" value="{{ old('type_paquete', 1) }}">
                                             </div>
                                         </div><!--end col-->
                                     </div><!--end row-->

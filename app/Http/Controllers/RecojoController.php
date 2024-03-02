@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Recojo;
 use App\Models\Motorizado;
+use App\Models\Pedido;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -25,17 +26,28 @@ class RecojoController extends Controller
                     })
                     ->where('pedidos.fecha_entrega', '<=', $hoy)
                     ->get();
-        $negocios = DB::table('negocios')->join('pedidos', 'negocios.id', '=', 'pedidos.negocio_id')
-            ->join('distritos', 'negocios.distrito_id', '=', 'distritos.id')
-            ->select('negocios.name as nombre','distritos.name as distrito', DB::raw('count(*) as total'))
-            ->where('pedidos.seguimiento_id', 1)
-            ->orWhere('pedidos.seguimiento_id', 2)
-            ->groupBy('nombre','distrito')
-            ->orderBy('nombre')
-            ->get();
-
+        $negocios = DB::table('negocios')
+        ->select('negocios.name as nombre', 'negocios.id as negocio_id', DB::raw('count(*) as total'))
+        ->groupBy('nombre', 'courier_system.negocios.id') // Add 'courier_system.negocios.id' to GROUP BY
+        ->addSelect(DB::raw('(SELECT distritos.name FROM distritos WHERE distritos.id = negocios.distrito_id) as distrito_nombre'))
+        ->join('pedidos', 'negocios.id', '=', 'pedidos.negocio_id')
+        ->where('pedidos.seguimiento_id', 1)
+        ->orWhere('pedidos.seguimiento_id', 2)
+        ->get();
+        
         $motorizados = Motorizado::with('distritos')->where('status', true)->get();
+
         return view('recojo.index', compact('pedidos', 'negocios', 'motorizados'));
+    }
+
+    public function asignarRecojo(Request $request){
+
+        dd($request->all());
+        $validated = $request->validate([
+            'negocio_id' => ['required', 'number', 'max:255'],
+            'motorizado_id' => ['required', 'string', 'max:255'],
+            'pedidos.*' => ['required', 'string', 'max:255']
+        ]);
     }
 
 }

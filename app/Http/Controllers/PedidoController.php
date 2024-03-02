@@ -43,8 +43,6 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-
         $request->validate([
             'namefull' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:255'],
@@ -64,31 +62,38 @@ class PedidoController extends Controller
             'medida_peso' => ['required', 'numeric', 'max:255']
         ]);
 
-        if ($request->pedido_pedido == 1) {
-            $reutilizado = 2;
+        DB::transaction(function () use ($request) {
+        $extra = array();
+        $igv = $request->total2 - $request->servicio2 - $request->extra2;
+        if ($request->pedido_pedido == 2) {
+            $reutilizado =  array("reutilizado" => 2);
+            array_push($extra, $reutilizado);
+            $medida = $request->extra2 - 2;
         }
-        if ($request->adiccional->count() > 0) {
+        if ($request->adiccional) {
                 foreach ($request->adiccional as $key => $value) {
                     if ($value == 'igv') {
-                    $reutilizado = 1;
+                        $igv = array("igv" => $igv);
+                        array_push($extra, $igv);
                 }
             }
         }
+        if ($medida > 0){
+            $pesoExtra = array("medidas_extra" => $medida);
+            array_push($extra, $pesoExtra);
+        }     
 
-        $array = collect(['reutilizado' => $reutilizado, 'clave2' => 'valor2']);
-
-
-        DB::transaction(function () use ($request) {
+            $precioAdicional = json_encode($extra);
             $tarifa = DB::table('distritos')->where('id', $request->distrito_id)->first();
 
             $pedido = Pedido::create([
                 'user_id' => auth()->user()->id,
                 'negocio_id' => $request->negocio_id,
                 'type_pedido_id' => $request->type_pedido_id,
-                'seguimiento_id' => 1, // '1' es el estado 'Registrado
+                'seguimiento_id' => 1,
                 'fecha_entrega' => $request->fecha_entrega,
                 'servicio' => $tarifa->tarifa,
-                'extra' => 0,
+                'extra' => $precioAdicional,
                 'reutilizado' => $request->reutilizado,
                 'reagendado' => $request->reagendado
             ]);
@@ -217,8 +222,16 @@ class PedidoController extends Controller
         $negocios = DB::table('negocios')->where('user_id', auth()->user()->id)->get();
         $type_pedidos = DB::table('type_pedido')->where('status',true)->get();
         $metodos_pago = DB::table('metodo_pago')->where('status',true)->get();
+        $reutilizado = false;
+        if($detalle->reutilizado){
+            $reutilizado = Pedido::with('destinatario', 'pedido_detalles')->where('id', $detalle->reutilizado)->first();
+        }
+        $reagendado = false;
+        if($detalle->reagendado){            
+            $reagendado = Pedido::with('destinatario', 'pedido_detalles')->where('id', $detalle->reagendado)->first();
+        }
 
-        return view('pedido.editPedido', compact('detalle', 'distritos', 'negocios', 'type_pedidos', 'metodos_pago'));
+        return view('pedido.editPedido', compact('detalle', 'distritos', 'negocios', 'type_pedidos', 'metodos_pago', 'reutilizado', 'reagendado'));
     }
 
     /**
@@ -322,34 +335,30 @@ class PedidoController extends Controller
 
     public function guardar(Request $request)
     {
-        //
-        $request->validate([
-            'namefull.*' => ['required', 'string', 'max:255'],
-            'phone.*' => ['required', 'string', 'max:255'],
-            'distrito_id.*' => ['required', 'string', 'max:255'],
-            'departamento_id.*' => ['required', 'string', 'max:255'],
-            'provincia_id.*' => ['required', 'string', 'max:255'],
-            'address.*' => ['required', 'string', 'max:255'],
-            'negocio_id' => ['required', 'string', 'max:255'],
-            'type_pedido_id.*' => ['required', 'string', 'max:255'],
-            'metodo_pago_id.*' => ['required', 'string', 'max:255'],            
-            'monto_cobrar.*' => ['required', 'string', 'max:255'],
-            'fecha_entrega.*' => ['required', 'date', 'max:255'],
-            'detalle.*' => ['required', 'string', 'max:255'],
-            'type_paquete.*' => ['required', 'string', 'max:255'],
-            'medida_largo.*' => ['required', 'numeric', 'max:255'],
-            'medida_ancho.*' => ['required', 'numeric', 'max:255'],
-            'medida_alto.*' => ['required', 'numeric', 'max:255']
-        ]);
-
-        // dd($request->all());
         $pedido = [];
         $des = [];
         $peds = [];
         $ped = [];
         DB::transaction(function () use ($request) {
+            foreach ($request->namefull as $key => $value) {
+                $extra = array();
+        if ($request->namefull[$key] != null &&  $request->phone[$key] != null && $request->distrito_id[$key] != null && $request->address[$key] != null && $request->monto_cobrar[$key] != null && $request->detalle[$key] != null && $request->fecha_entrega[$key] != null && $request->medida_largo[$key] != null) { 
+        $igv = $request->totalT[$key] - $request->servicioT[$key] - $request->extraT[$key];
+        if (isset($request->adiccional[$key])) {
+                foreach ($request->adiccional[$key] as $keyss => $val) {
+                    if ($val == 'igv') {
+                        $igv = array("igv" => $igv);
+                        array_push($extra, $igv);
+                }
+            }
+        }
+        if ($request->extraT[$key] > 0){
+            $pesoExtra = array("medidas_extra" => $request->extraT[$key]);
+            array_push($extra, $pesoExtra);
+        }     
 
-        foreach ($request->namefull as $key => $value) {
+        $precioAdicional = json_encode($extra);
+
             $tarifa = DB::table('distritos')->where('id', $request->distrito_id[$key])->first();
             $pedido = Pedido::create([
                 'user_id' => auth()->user()->id,
@@ -358,7 +367,7 @@ class PedidoController extends Controller
                 'seguimiento_id' => 1, // '1' es el estado 'Registrado
                 'fecha_entrega' => $request->fecha_entrega[$key],
                 'servicio' => $tarifa->tarifa,
-                'extra' => 0
+                'extra' => $precioAdicional
             ]);
 
             $lastInsertedId = $pedido->id;
@@ -390,8 +399,14 @@ class PedidoController extends Controller
                 'type_paquete' => $request->type_paquete[$key],
                 'medida_largo' => $request->medida_largo[$key],
                 'medida_ancho' => $request->medida_ancho[$key],
-                'medida_alto' => $request->medida_alto[$key]
+                'medida_alto' => $request->medida_alto[$key],
+                'medida_peso' => $request->medida_peso[$key]
             ]);
+
+            unset($extra);
+        } else {
+            
+        }
         }
     });
         // dd($pedido, $des, $peds, $ped);
@@ -453,6 +468,12 @@ class PedidoController extends Controller
     public function obtenerPedido($id_pedido)
     {
         $pedido = Pedido::with('negocio', 'user', 'destinatario', 'pedido_seguimientos', 'pedido_detalles')->where('id', $id_pedido)->first();
+        return response()->json($pedido);
+    }
+
+    public function obtenerPedidosNegocio($negocio_id)
+    {
+        $pedido = Pedido::with('negocio', 'user', 'destinatario', 'pedido_seguimientos', 'pedido_detalles')->where('negocio_id', $negocio_id)->whereIn('seguimiento_id',[1,2])->get();
         return response()->json($pedido);
     }
 

@@ -67,9 +67,11 @@
                         </div>
                     </div> <!-- end col-->
                 </div> <!-- end row-->
+                <form action="{{ route('recojo.asignarRecojo')}}" method="POST">
+                @csrf
                 <div class="row">
-                    <div class="col-4 ">
-                        <div class="card h-100">
+                    <div class="col-4">
+                        <div class="card">
                             <div class="card-header">
                                 <h5 class="card-title mb-0">Negocios pedidos</h5>
                             </div>
@@ -79,7 +81,7 @@
                                     <select name="negocio_id" id="negocio_id" class="form-select">
                                         <option value="">Seleccione un negocio</option>
                                         @foreach ($negocios as $negocio)
-                                            <option value="{{ $negocio->nombre }}">{{ $negocio->nombre }} | {{$negocio->distrito}} [{{ $negocio->total }}]</option>
+                                            <option value="{{ $negocio->negocio_id }}">{{ $negocio->nombre }} | {{$negocio->distrito_nombre}} [{{ $negocio->total }}]</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -88,7 +90,7 @@
                         </div>
                     </div> <!-- end col-->  
                     <div class="col-4">
-                        <div class="card h-100">
+                        <div class="card">
                             <div class="card-header">
                                 <h5 class="card-title mb-0">Motorizados activos</h5>
                             </div>
@@ -105,23 +107,37 @@
                         </div>
                     </div> <!-- end col-->  
                     <div class="col-4">
-                        <div class="card h-100">
+                        <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title mb-0">Asignar recojos</h5>
+                                <h5 class="card-title mb-0">Asignar Recojos</h5>
                             </div>
                             <div class="card-body">
-                                <div class="d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Asignar</button>
-                                </div>
+                                <button type="submit" class="btn btn-flat btn-primary">Asignar</button>
                             </div>
                             <!-- end card body -->
                         </div>
                     </div> <!-- end col-->  
+                    <div class="col-12">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Listado de pedidos a recoger</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group" id="lista-checkbox">
+                                    
+                                </div>
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                    </div> <!-- end col-->
                 </div> <!-- end row-->
+            </form>
             </div>
     </div> <!-- end row-->
 
 @endsection
 @section('script')
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="{{ URL::asset('build/js/dev/asignarRecojo.js?v2') }}"></script>
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
 @endsection

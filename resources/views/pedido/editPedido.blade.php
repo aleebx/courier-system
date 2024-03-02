@@ -47,7 +47,25 @@
                     <form action="{{ route('pedido.update', $detalle )}}" method="POST">
                         @csrf
                         @method('PUT')
-                        <div class="row">                            
+                        <div class="row">
+                            @if ($reutilizado)
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <div class="alert alert-info shadow" role="alert">
+                                        <strong> Reutilizado </strong> [#{{ $reutilizado->id }}] <b>{{ $reutilizado->destinatario->namefull }}</b> {{ $reutilizado->pedido_detalles->detalle }}
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            @if ($reagendado)
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <div class="alert alert-info shadow" role="alert">
+                                        <strong> Reagendado </strong> [#{{ $reagendado->id }}] <b>{{ $reagendado->destinatario->namefull }}</b> {{ $reagendado->pedido_detalles->detalle }}
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="negocio_id" class="form-label">Mis negocios</label>
@@ -147,7 +165,7 @@
                                     <label for="type_paquete" class="form-label">Tipo de paquete</label>
                                     <select name="type_paquete" id="type_paquete" class="form-select">                                                   
                                         <option value="1" @if ($detalle->pedido_detalles->type_paquete == 1)selected @endif>Estandar</option>
-                                        <option value="2" @if ($detalle->pedido_detalles->type_paquete == 2)selected @endif>>Extra Grande</option>
+                                        <option value="2" @if ($detalle->pedido_detalles->type_paquete == 2)selected @endif>Extra Grande</option>
                                     </select>
                                 </div>
                             </div><!--end col-->                                             
@@ -208,6 +226,56 @@
                         </div>
                     </div>
                     @endforeach 
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Costo del servicio</h4>
+                </div>
+                <div class="card-body">
+                    @php
+                        $data = json_decode($detalle->extra);
+                        $total = 0;
+                    @endphp
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Servicio <span class="text-muted">{{ $detalle->servicio }}</span>
+                        </li>
+                    @if ($data)
+                    @foreach ($data as $item)                   
+                        @if (isset($item->reutilizado))
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Reutilizado   <span class="text-muted">{{ $item->reutilizado }}</span>
+                            @php
+                            $total = $total + $item->reutilizado;
+                            @endphp
+                        </li>
+                        @endif
+                        @if (isset($item->medidas_extra))
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Paquete Grande <span class="text-muted">{{ $item->medidas_extra }}</span>
+                            @php
+                            $total = $total + $item->medidas_extra;
+                            @endphp
+                        </li>
+                        @endif
+                        @if (isset($item->igv))
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            IGV  <span class="text-muted">{{ round($item->igv, 2) }}</span>
+                            @php
+                            $total = $total +  $item->igv;
+                            @endphp
+                        </li>
+                        @endif
+                    @endforeach
+                    @endif
+                        @php
+                            $total = $total + $detalle->servicio;
+                        @endphp
+                        <li class="list-group-item d-flex justify-content-between align-items-center fw-bold">
+                            Total <span class="text-muted">{{ round($total, 2) }}</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

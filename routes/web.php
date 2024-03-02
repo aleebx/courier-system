@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/pedido/obtenerTipoPedido', [PedidoController::class, 'obtenerTipoPedido'])->name('pedido.obtenerTipoPedido');
     Route::get('/pedido/obtenerMetodoPago', [PedidoController::class, 'obtenerMetodoPago'])->name('pedido.obtenerMetodoPago');
     Route::get('/obtenerPedidos', [PedidoController::class, 'obtenerPedidos']);
+    Route::get('/obtenerPedidosNegocio/{id}', [PedidoController::class, 'obtenerPedidosNegocio']);
     Route::get('/obtenerPedido/{id}', [PedidoController::class, 'obtenerPedido']);
     Route::get('/pedido/storeMax', [PedidoController::class, 'storeMax'])->name('pedido.storeMax');
     
@@ -81,6 +82,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/coordinador/incidencias', [CoordinadorController::class, 'incidencias'])->name('coordinador.incidencias');
 
     Route::get('/recojo', [RecojoController::class, 'index'])->name('recojo.index');
+    Route::post('/recojo/asignarRecojo', [RecojoController::class, 'asignarRecojo'])->name('recojo.asignarRecojo');
     Route::get('/pago', [PagoController::class, 'index'])->name('pago.index');
     Route::post('/pago/motorizado', [PagoController::class, 'motorizado'])->name('pago.motorizado');
     Route::get('/pago/obtenerPagos', [PagoController::class, 'obtenerPagos'])->name('pago.obtenerPagos');

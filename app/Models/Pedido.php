@@ -19,6 +19,7 @@ class Pedido extends Model
         'negocio_id',
         'motorizado_id',
         'type_pedido_id',
+        'seguimiento_id',
         'fecha_entrega',
         'fecha_asignado',
         'servicio',
