@@ -30,6 +30,7 @@
                                                 <i class="mdi mdi-package-variant-closed display-6 text-muted"></i>
                                             </div>
                                             <div class="flex-grow-1 ms-3">
+                                                <h2 class="mb-0"><span class="counter-value" data-target="{{ $registrosNoPresentes->count() }}">1</span></h2> / 
                                                 <h2 class="mb-0"><span class="counter-value" data-target="{{ $pedidos->count() }}">1</span></h2>
                                             </div>
                                         </div>
@@ -80,7 +81,7 @@
                                     <label for="negocio_id" class="form-label">Negocio</label>
                                     <select name="negocio_id" id="negocio_id" class="form-select">
                                         <option value="">Seleccione un negocio</option>
-                                        @foreach ($negocios as $negocio)
+                                        @foreach ($negociosSinRecojo as $negocio)
                                             <option value="{{ $negocio->negocio_id }}">{{ $negocio->nombre }} | {{$negocio->distrito_nombre}} [{{ $negocio->total }}]</option>
                                         @endforeach
                                     </select>

@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pedidos_recojo', function (Blueprint $table) {
+        Schema::create('pedido_recojos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('pedido_id')->constrained('pedidos')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('motorizado_id')->constrained('motorizado')->onUpdate('cascade');
             $table->foreignId('negocio_id')->constrained('negocio')->onUpdate('cascade');
-            $table->integer('motorizado_id_old')->constrained('motorizado')->onUpdate('cascade');
-            $table->boolean('status');
+            $table->integer('motorizado_id_old');
+            $table->boolean('status')->default(false);
+            $table->text('observacion')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pedidos_recojo');
+        Schema::dropIfExists('pedido_recojos');
     }
 };

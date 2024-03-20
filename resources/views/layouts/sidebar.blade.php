@@ -154,13 +154,13 @@
                                 <a href="{{ route('moto.pedidos') }}" class="nav-link">{{ __('Pedidos Motorizado') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('moto.index') }}" class="nav-link">{{ __('Recojos Motorizado') }}</a>
+                                <a href="{{ route('moto.recojos') }}" class="nav-link">{{ __('Recojos Motorizado') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('moto.index') }}" class="nav-link">{{ __('Devoluciones Motorizado') }}</a>
+                                <a href="{{ route('moto.devoluciones') }}" class="nav-link">{{ __('Devoluciones Motorizado') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('moto.index') }}" class="nav-link">{{ __('Reportes Motorizado') }}</a>
+                                <a href="{{ route('moto.reportes') }}" class="nav-link">{{ __('Reportes Motorizado') }}</a>
                             </li>
                         </ul>
                     </div>

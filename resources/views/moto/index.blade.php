@@ -8,6 +8,7 @@
 <!--datatable responsive css-->
 <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+
 @endsection
 @section('content')
     @component('components.breadcrumb')
@@ -25,7 +26,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <a href="{{ route('moto.create') }}" class="btn btn-primary">Nuevo Motorizado</a>
+                                <div class="mb-3">
+                                    <a href="{{ route('moto.create') }}" class="btn btn-primary">Nuevo Motorizado</a>
+                                </div>
                                 <table id="tableMotorizado" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                                     <thead>
                                         <tr>
@@ -59,6 +62,7 @@
                                         @endforeach                                       
                                     </tbody>
                                 </table>
+                                {{-- {{ $motorizados->link() }} --}}
                             </div> <!-- end card-body-->
                         </div>
                     </div> <!-- end col-->
@@ -68,6 +72,7 @@
 
 @endsection
 @section('script')
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <!-- datatable js -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>

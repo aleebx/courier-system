@@ -38,6 +38,11 @@ class Pedido extends Model
         return $this->hasMany(Pedido_pago::class);
     }
 
+    public function pedido_recojos(): HasOne
+    {
+        return $this->HasOne(Pedido_recojo::class);
+    }
+
     public function pedido_seguimientos(): HasMany
     {
         return $this->hasMany(Pedido_seguimiento::class);

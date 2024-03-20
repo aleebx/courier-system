@@ -22,10 +22,11 @@ return new class extends Migration
             $table->timestamp('fecha_asignado')->nullable();
             $table->boolean('reprogramado')->default(false);
             $table->integer('motorizado_old_id')->nullable();
+            $table->integer('type_recojo')->default(1);
             $table->integer('reutilizado')->nullable(); // ID DEL PEDIDO QUE SE REUTILIZO
             $table->integer('reagendado')->nullable(); // ID DEL PEDIDO QUE SE REAGENDO
             $table->decimal('servicio', 8, 2); // COSTO DEL SERVICIO
-            $table->decimal('extra', 8, 2); // COSTO EXTRA
+            $table->json('extra')->nullable(); // COSTO EXTRA
             $table->json('productos')->nullable(); // PRODUCTOS          
             $table->timestamps();
         });

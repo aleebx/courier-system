@@ -24,7 +24,8 @@ class MotorizadoController extends Controller
      */
     public function index()
     {
-        $motorizados = Motorizado::with('user')->latest()->get();
+        $motorizados = Motorizado::with('user')->paginate(10);
+        // dd($motorizados);
         return view('moto.index', ['motorizados' => $motorizados]);
     }
 
@@ -468,11 +469,10 @@ class MotorizadoController extends Controller
     {
         $motorizado = Motorizado::where('user_id', auth()->user()->id)->first();
         if ($motorizado) {
-            $pedidos = Pedido::where('motorizado_id', $motorizado->id)->where('tipo_pedido_id', 1)->get();
-            $metodos_pago = DB::table('metodo_pago')->where('status',true)->get();
+            $pedidos = Pedido::with('negocio', 'user', 'destinatario.distritos', 'pedido_detalles','pedido_recojos')->where('motorizado_id', $motorizado->id)->get();            
             return view('moto.recojoMoto', compact('pedidos'));
         }else{
-            $pedidos = Pedido::where('tipo_pedido_id', 1)->get();
+            $pedidos = Pedido::with('negocio', 'user', 'destinatario.distritos', 'pedido_detalles','pedido_recojos')->whereIn('seguimiento_id',[1,2])->get();            
             return view('moto.recojoMoto', compact('pedidos'));
         }
     }

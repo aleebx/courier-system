@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
                     <li class="nav-item">
-                        <a class="nav-link fs-14 active" href="#hero">{{ __('Index') }}</a>
+                        <a class="nav-link fs-14" href="#hero">{{ __('Index') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fs-14" href="#services">{{ __('Services') }}</a>
@@ -37,7 +37,7 @@
                         <a class="nav-link fs-14" href="#features">{{ __('Coverage Area') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-14" href="#plans">{{ __('Contact') }}</a>
+                        <a class="nav-link fs-14" href="#contact">{{ __('Contact') }}</a>
                     </li>
                 </ul>
 
@@ -59,14 +59,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-sm-10">
                     <div class="text-center mt-lg-5 pt-5">
-                        <h1 class="display-6 fw-semibold mb-3 lh-base">The better way to manage your website with <span
-                                class="text-success">Velzon </span></h1>
-                        <p class="lead text-muted lh-base">Velzon is a fully responsive, multipurpose and premium Bootstrap 5 Admin & Dashboard Template built in multiple frameworks.</p>
-
-                        <div class="d-flex gap-2 justify-content-center mt-4">
-                            <a href="auth-signup-basic" class="btn btn-primary">Get Started <i class="ri-arrow-right-line align-middle ms-1"></i></a>
-                            <a href="pages-pricing" class="btn btn-danger">View Plans <i class="ri-eye-line align-middle ms-1"></i></a>
-                        </div>
+                        <h1 class="display-6 fw-semibold mb-3 lh-base">Tu mejor aliado para entregas contraentrega en Lima Metropolitana y Callao <span class="text-danger">Dinsides Courier </span></h1>
+                        <p class="lead text-muted lh-base">¿Necesitas enviar un paquete de forma rápida y segura? <span class="text-danger">Dinsides Courier </span> es tu mejor opción. Ofrecemos un servicio de entrega contraentrega a toda Lima Metropolitana y Callao, con tarifas competitivas y tiempos de entrega rápidos.</p>
                     </div>
 
                     <div class="mt-4 mt-sm-5 pt-sm-5 mb-sm-n5 demo-carousel">
@@ -127,7 +121,7 @@
                 <div class="col-lg-12">
 
                     <div class="text-center mt-5">
-                        <h5 class="fs-20">Trusted <span class="text-primary text-decoration-underline">by</span> the world's best</h5>
+                        <h5 class="fs-20">Trabajan con nosotros</h5>
 
                         <!-- Swiper -->
                         <div class="swiper trusted-client-slider mt-sm-5 mt-4 mb-sm-5 mb-4" dir="ltr">
@@ -200,7 +194,7 @@
                     <div class="d-flex p-3">
                         <div class="flex-shrink-0 me-3">
                             <div class="avatar-sm icon-effect">
-                                <div class="avatar-title bg-transparent text-success rounded-circle">
+                                <div class="avatar-title bg-transparent text-danger rounded-circle">
                                     <i class="ri-pencil-ruler-2-line fs-36"></i>
                                 </div>
                             </div>
@@ -219,7 +213,7 @@
                     <div class="d-flex p-3">
                         <div class="flex-shrink-0 me-3">
                             <div class="avatar-sm icon-effect">
-                                <div class="avatar-title bg-transparent text-success rounded-circle">
+                                <div class="avatar-title bg-transparent text-danger rounded-circle">
                                     <i class="ri-palette-line fs-36"></i>
                                 </div>
                             </div>
@@ -238,7 +232,7 @@
                     <div class="d-flex p-3">
                         <div class="flex-shrink-0 me-3">
                             <div class="avatar-sm icon-effect">
-                                <div class="avatar-title bg-transparent text-success rounded-circle">
+                                <div class="avatar-title bg-transparent text-danger rounded-circle">
                                     <i class="ri-lightbulb-flash-line fs-36"></i>
                                 </div>
                             </div>
@@ -257,7 +251,7 @@
                     <div class="d-flex p-3">
                         <div class="flex-shrink-0 me-3">
                             <div class="avatar-sm icon-effect">
-                                <div class="avatar-title bg-transparent text-success rounded-circle">
+                                <div class="avatar-title bg-transparent text-danger rounded-circle">
                                     <i class="ri-customer-service-line fs-36"></i>
                                 </div>
                             </div>
@@ -276,7 +270,7 @@
                     <div class="d-flex p-3">
                         <div class="flex-shrink-0 me-3">
                             <div class="avatar-sm icon-effect">
-                                <div class="avatar-title bg-transparent text-success rounded-circle">
+                                <div class="avatar-title bg-transparent text-danger rounded-circle">
                                     <i class="ri-stack-line fs-36"></i>
                                 </div>
                             </div>
@@ -295,7 +289,7 @@
                     <div class="d-flex p-3">
                         <div class="flex-shrink-0 me-3">
                             <div class="avatar-sm icon-effect">
-                                <div class="avatar-title bg-transparent text-success rounded-circle">
+                                <div class="avatar-title bg-transparent text-danger rounded-circle">
                                     <i class="ri-settings-2-line fs-36"></i>
                                 </div>
                             </div>
@@ -315,7 +309,7 @@
                     <div class="d-flex p-3">
                         <div class="flex-shrink-0 me-3">
                             <div class="avatar-sm icon-effect">
-                                <div class="avatar-title bg-transparent text-success rounded-circle">
+                                <div class="avatar-title bg-transparent text-danger rounded-circle">
                                     <i class="ri-slideshow-line fs-36"></i>
                                 </div>
                             </div>
@@ -334,7 +328,7 @@
                     <div class="d-flex p-3">
                         <div class="flex-shrink-0 me-3">
                             <div class="avatar-sm icon-effect">
-                                <div class="avatar-title bg-transparent text-success rounded-circle">
+                                <div class="avatar-title bg-transparent text-danger rounded-circle">
                                     <i class="ri-google-fill fs-36"></i>
                                 </div>
                             </div>
@@ -353,7 +347,7 @@
                     <div class="d-flex p-3">
                         <div class="flex-shrink-0 me-3">
                             <div class="avatar-sm icon-effect">
-                                <div class="avatar-title bg-transparent text-success rounded-circle">
+                                <div class="avatar-title bg-transparent text-danger rounded-circle">
                                     <i class="ri-briefcase-5-line fs-36"></i>
                                 </div>
                             </div>
@@ -466,7 +460,7 @@
                                         <div class="flex-shrink-0 me-2">
                                             <div class="avatar-xs icon-effect">
                                                 <div
-                                                    class="avatar-title bg-transparent text-success rounded-circle h2">
+                                                    class="avatar-title bg-transparent text-danger rounded-circle h2">
                                                     <i class="ri-check-fill"></i>
                                                 </div>
                                             </div>
@@ -479,7 +473,7 @@
                                         <div class="flex-shrink-0 me-2">
                                             <div class="avatar-xs icon-effect">
                                                 <div
-                                                    class="avatar-title bg-transparent text-success rounded-circle h2">
+                                                    class="avatar-title bg-transparent text-danger rounded-circle h2">
                                                     <i class="ri-check-fill"></i>
                                                 </div>
                                             </div>
@@ -492,7 +486,7 @@
                                         <div class="flex-shrink-0 me-2">
                                             <div class="avatar-xs icon-effect">
                                                 <div
-                                                    class="avatar-title bg-transparent text-success rounded-circle h2">
+                                                    class="avatar-title bg-transparent text-danger rounded-circle h2">
                                                     <i class="ri-check-fill"></i>
                                                 </div>
                                             </div>
@@ -509,7 +503,7 @@
                                         <div class="flex-shrink-0 me-2">
                                             <div class="avatar-xs icon-effect">
                                                 <div
-                                                    class="avatar-title bg-transparent text-success rounded-circle h2">
+                                                    class="avatar-title bg-transparent text-danger rounded-circle h2">
                                                     <i class="ri-check-fill"></i>
                                                 </div>
                                             </div>
@@ -522,7 +516,7 @@
                                         <div class="flex-shrink-0 me-2">
                                             <div class="avatar-xs icon-effect">
                                                 <div
-                                                    class="avatar-title bg-transparent text-success rounded-circle h2">
+                                                    class="avatar-title bg-transparent text-danger rounded-circle h2">
                                                     <i class="ri-check-fill"></i>
                                                 </div>
                                             </div>
@@ -566,7 +560,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0 me-2">
                                     <div class="avatar-xs icon-effect">
-                                        <div class="avatar-title bg-transparent text-success rounded-circle h2">
+                                        <div class="avatar-title bg-transparent text-danger rounded-circle h2">
                                             <i class="ri-check-fill"></i>
                                         </div>
                                     </div>
@@ -578,7 +572,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0 me-2">
                                     <div class="avatar-xs icon-effect">
-                                        <div class="avatar-title bg-transparent text-success rounded-circle h2">
+                                        <div class="avatar-title bg-transparent text-danger rounded-circle h2">
                                             <i class="ri-check-fill"></i>
                                         </div>
                                     </div>
@@ -590,7 +584,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0 me-2">
                                     <div class="avatar-xs icon-effect">
-                                        <div class="avatar-title bg-transparent text-success rounded-circle h2">
+                                        <div class="avatar-title bg-transparent text-danger rounded-circle h2">
                                             <i class="ri-check-fill"></i>
                                         </div>
                                     </div>
@@ -1292,7 +1286,7 @@
                             <img src="{{ URL::asset('build/images/landing/process-arrow-img.png') }}" alt="" class="img-fluid">
                         </div>
                         <div class="avatar-sm icon-effect mx-auto mb-4">
-                            <div class="avatar-title bg-transparent text-success rounded-circle h1">
+                            <div class="avatar-title bg-transparent text-danger rounded-circle h1">
                                 <i class="ri-quill-pen-line"></i>
                             </div>
                         </div>
@@ -1308,7 +1302,7 @@
                             <img src="{{ URL::asset('build/images/landing/process-arrow-img.png') }}" alt="" class="img-fluid">
                         </div>
                         <div class="avatar-sm icon-effect mx-auto mb-4">
-                            <div class="avatar-title bg-transparent text-success rounded-circle h1">
+                            <div class="avatar-title bg-transparent text-danger rounded-circle h1">
                                 <i class="ri-user-follow-line"></i>
                             </div>
                         </div>
@@ -1321,7 +1315,7 @@
                 <div class="col-lg-4">
                     <div class="process-card mt-4">
                         <div class="avatar-sm icon-effect mx-auto mb-4">
-                            <div class="avatar-title bg-transparent text-success rounded-circle h1">
+                            <div class="avatar-title bg-transparent text-danger rounded-circle h1">
                                 <i class="ri-book-mark-line"></i>
                             </div>
                         </div>
